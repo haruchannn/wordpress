@@ -1,6 +1,10 @@
 <?php
 add_action('init', function(){
+    add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
+    register_nav_menus([
+        'global_nav'=>'グローバルナビゲーション',
+    ]);
 });
 
 function get_eyecatch_with_default()

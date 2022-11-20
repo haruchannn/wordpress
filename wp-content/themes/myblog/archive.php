@@ -13,8 +13,12 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1><?php bloginfo('name'); ?></h1>
-                        <span class="subheading"><?php bloginfo('description'); ?></span>
+                        <?php if (is_category()) : ?>
+                            <h1>Category</h1>
+                        <?php else : ?>
+                            <h1>Tag</h1>
+                        <?php endif; ?>
+                        <span class="subheading"><?php wp_title(''); ?></span>
                     </div>
                 </div>
             </div>
@@ -45,26 +49,25 @@
                     <?php endwhile; ?>
 
                     <!-- Pager-->
-
                     <div class="d-flex mb-4 justify-content-around">
-                       <?php 
-                       $link=get_previous_posts_link('← Newer Posts'); 
-                       if($link){
-                       $link=str_replace('<a', '<a class="btn btn-primary text-uppercase float-left"', $link);
-                       echo $link;
-                       } ?>
+                        <?php
+                        $link = get_previous_posts_link('← Newer Posts');
+                        if ($link) {
+                            $link = str_replace('<a', '<a class="btn btn-primary text-uppercase float-left"', $link);
+                            echo $link;
+                        } ?>
 
 
-                       <?php 
-                       $link=get_next_posts_link('Older Posts →'); 
-                       if($link){
-                       $link=str_replace('<a', '<a class="btn btn-primary text-uppercase float-right"', $link);
-                       echo $link;
-                       } ?>
-                       
+                        <?php
+                        $link = get_next_posts_link('Older Posts →');
+                        if ($link) {
+                            $link = str_replace('<a', '<a class="btn btn-primary text-uppercase float-right"', $link);
+                            echo $link;
+                        } ?>
+
                     </div>
                 <?php else : ?>
-                    <p>記事が見つかりませんでした！</p>←
+                    <p>記事が見つかりませんでした！</p>
                 <?php endif; ?>
             </div>
         </div>
